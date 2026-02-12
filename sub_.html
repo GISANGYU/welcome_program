@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMD 신입생 적응 멘토링 기획안</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
+    />
+    <style>
+      :root {
+        --primary: #2563eb; /* 메인 블루 */
+        --secondary: #475569; /* 서브 그레이 */
+        --bg-color: #f1f5f9; /* 배경색 */
+        --card-bg: #ffffff; /* 카드 배경 */
+        --text-main: #1e293b; /* 본문 텍스트 */
+        --accent-bg: #eff6ff; /* 강조 배경 (연한 블루) */
+      }
+
+      body {
+        font-family: 'Pretendard', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        margin: 0;
+        padding: 0;
+        line-height: 1.7;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      /* 헤더 */
+      header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .header-badge {
+        display: inline-block;
+        background-color: var(--primary);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+        margin: 0 0 10px 0;
+        color: #0f172a;
+      }
+
+      header p {
+        color: var(--secondary);
+        font-size: 1.1rem;
+      }
+
+      /* 섹션 공통 */
+      section {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        border-left: 5px solid var(--primary);
+        padding-left: 15px;
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 25px;
+        color: #0f172a;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        color: #334155;
+      }
+
+      ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      /* 1. 개요 강조 박스 */
+      .highlight-box {
+        background-color: var(--accent-bg);
+        border: 1px solid #bfdbfe;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .highlight-text {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      /* 2. 문제 인식 (3단 그리드) */
+      .problem-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .problem-card {
+        background: #f8fafc;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .problem-title {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        display: block;
+        color: #ef4444; /* 경고색 */
+      }
+
+      /* 3. 방향성 */
+      .direction-list li {
+        font-weight: 500;
+        list-style: none;
+        position: relative;
+        padding-left: 25px;
+      }
+
+      .direction-list li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+        font-weight: bold;
+      }
+
+      /* 4. 공통 구조 info bar */
+      .info-bar {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        background: #1e293b;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .info-item {
+        padding: 10px;
+      }
+
+      .info-label {
+        display: block;
+        font-size: 0.85rem;
+        opacity: 0.8;
+        margin-bottom: 5px;
+      }
+
+      .info-value {
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+
+      /* 5. 1안 2안 비교 레이아웃 */
+      .plan-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+
+      .plan-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 25px;
+        transition: transform 0.2s;
+      }
+
+      .plan-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .plan-header {
+        text-align: center;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #f1f5f9;
+        margin-bottom: 20px;
+      }
+
+      .plan-badge {
+        background: #334155;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+      }
+
+      .plan-price {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 10px 0;
+        color: var(--primary);
+      }
+
+      .plan-desc {
+        color: var(--secondary);
+        font-size: 0.95rem;
+      }
+
+      .detail-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .detail-list li {
+        margin-bottom: 15px;
+      }
+
+      .detail-title {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: #334155;
+      }
+
+      .detail-content {
+        font-size: 0.9rem;
+        color: #64748b;
+        padding-left: 10px;
+        border-left: 2px solid #cbd5e1;
+      }
+
+      /* 기대 효과 박스 */
+      .effect-box {
+        background-color: #f0fdf4; /* 연한 초록 */
+        border: 1px solid #bbf7d0;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .effect-box ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .effect-box li {
+        background: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 1px solid #86efac;
+        font-weight: 600;
+        color: #166534;
+      }
+
+      /* 푸터 */
+      footer {
+        text-align: center;
+        margin-top: 50px;
+        padding-bottom: 50px;
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+
+      /* 모바일 대응 */
+      @media (max-width: 768px) {
+        .plan-container {
+          grid-template-columns: 1fr;
+        }
+
+        .header-title {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <span class="header-badge">2026학년도 신입생 프로그램</span>
+        <h1>디지털미디어디자인과<br />신입생 적응 멘토링 기획안</h1>
+        <p>정체성 확립과 소속감 고취를 통한 중도 이탈 예방</p>
+      </header>
+
+      <section>
+        <h2>1. 기획 개요</h2>
+        <p>
+          본 기획은 디지털미디어디자인과 신입생의 중도 이탈을 예방하고, 학과 및
+          학교생활에 대한 정체성·자부심·소속감 형성을 목표로 하는 학기 초 적응
+          프로그램입니다.
+        </p>
+        <div class="highlight-box">
+          <p style="margin: 0">
+            DMD 특성상 명확한 직업 목표보다는 <br />
+            <span class="highlight-text"
+              >"디자인은 하고 싶지만 무엇을 하고 싶은지는 모르는 상태"</span
+            >로 입학하는 비율이 높음.
+          </p>
+        </div>
+        <p>
+          이로 인한 입학 초기 혼란과 좌절을 방지하기 위해
+          <strong>2학년 선배를 멘토로 활용한 6:1 멘토링</strong>을 통해 아래
+          목표를 달성하고자 합니다.
+        </p>
+        <ul>
+          <li>학과에 대한 현실적인 이해</li>
+          <li>전공 불안 해소</li>
+          <li>초기 인간관계 형성</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>2. 문제 인식 및 필요성</h2>
+        <div class="problem-grid">
+          <div class="problem-card">
+            <span class="problem-title">⚠️ 전공 정체성 혼란</span>
+            <p style="font-size: 0.9rem; margin: 0">
+              • 손그림 입시와 디지털 수업 간 괴리<br />
+              • "내가 생각한 디자인이 아니다"라는 인식<br />
+              • 너무 넓은 디자인 범위로 인한 방향성 상실
+            </p>
+          </div>
+          <div class="problem-card">
+            <span class="problem-title">📉 적응 실패와 이탈</span>
+            <p style="font-size: 0.9rem; margin: 0">
+              • 전공 부적합 인식 → 휴학/자퇴<br />
+              • 입학 초기(1학기)에 이탈 집중 발생<br />
+              • 단순 친목 행사로는 해결 불가
+            </p>
+          </div>
+          <div class="problem-card">
+            <span class="problem-title">💬 인간관계 요인</span>
+            <p style="font-size: 0.9rem; margin: 0">
+              • 질문 대상 부재 및 관계 형성 실패<br />
+              • 혼자 과제 수행 → 비교/위축/소외감<br />
+              • 선배/동기와의 접점 부족
+            </p>
+          </div>
+        </div>
+        <p style="text-align: center; margin-top: 20px; font-weight: bold">
+          ➡ 정체성 안정 + 관계 형성 + 미래 상의 연결이 동시에 필요
+        </p>
+      </section>
+
+      <section>
+        <h2>3. 프로그램 방향성 & 구성</h2>
+
+        <h3>핵심 방향</h3>
+        <ul class="direction-list">
+          <li>
+            <strong>사람 중심 자부심:</strong> "우리과 대단하다" 식의 주입 배제,
+            나와 비슷한 고민을 했던 선배와의 연결
+          </li>
+          <li>
+            <strong>현실적인 미래 제시:</strong> 성공 사례보다는 '과정과 선택'
+            중심의 로드맵 제시
+          </li>
+          <li>
+            <strong>관계의 지속성:</strong> 1회성 이벤트가 아닌 최소 2회 접점
+            또는 고정 멘토제 운영
+          </li>
+        </ul>
+
+        <h3 style="margin-top: 30px">공통 구성안</h3>
+        <div class="info-bar">
+          <div class="info-item">
+            <span class="info-label">멘토 구성</span>
+            <span class="info-value">2학년 선배 20명</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">비율</span>
+            <span class="info-value">멘토 1 : 신입생 6</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">총 대상</span>
+            <span class="info-value">신입생 약 120명</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">장소</span>
+            <span class="info-value">크리에이티브 스튜디오</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        style="background-color: transparent; box-shadow: none; padding: 0"
+      >
+        <div class="plan-container">
+          <div class="plan-card" style="background: white">
+            <div class="plan-header">
+              <span class="plan-badge">OPTION 1</span>
+              <span class="plan-price">인당 2만원</span>
+              <span class="plan-desc">1회 집중형 프로그램</span>
+            </div>
+            <ul class="detail-list">
+              <li>
+                <span class="detail-title">① 학과 생활 중심 OT</span>
+                <div class="detail-content">
+                  수업 구조, 장비 대여, 야작 시스템 및 멘토링 제도(적응/툴) 안내
+                </div>
+              </li>
+              <li>
+                <span class="detail-title">② 선배 중심 사례 공유</span>
+                <div class="detail-content">
+                  손그림→디지털 적응 실패 경험 등 현실적 이야기 공유. <br />
+                  <strong>'왜 이 과에 남게 되었는지'</strong>에 초점
+                </div>
+              </li>
+              <li>
+                <span class="detail-title">③ 멘토링 및 친목 활동</span>
+                <div class="detail-content">
+                  소그룹 카페/식사/보드게임 지원.<br />
+                  가벼운 질문 미션을 통한 자연스러운 고민 상담 유도
+                </div>
+              </li>
+            </ul>
+            <div
+              style="
+                background: #f1f5f9;
+                padding: 10px;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                text-align: center;
+              "
+            >
+              <strong>기대효과:</strong> 선배와 심리적 거리 축소,<br />현실적
+              신뢰 형성
+            </div>
+          </div>
+
+          <div
+            class="plan-card"
+            style="background: white; border-color: var(--primary)"
+          >
+            <div class="plan-header">
+              <span class="plan-badge" style="background: var(--primary)"
+                >OPTION 2</span
+              >
+              <span class="plan-price">인당 1만원</span>
+              <span class="plan-desc">2회 분할형 프로그램 (단계적)</span>
+            </div>
+            <ul class="detail-list">
+              <li>
+                <span class="detail-title">1회차: 적응 및 관계 형성</span>
+                <div class="detail-content">
+                  학과 OT + 멘토 매칭 + 토크형 활동.<br />
+                  실력 평가 요소 배제
+                </div>
+              </li>
+              <li>
+                <span class="detail-title">2회차: 인식 확장 (미션)</span>
+                <div class="detail-content">
+                  소그룹 미션 (결과물보다 아이디어/협업 중심).<br />
+                  교수진의 '팀별 코멘트' 피드백 제공 (점수X)
+                </div>
+              </li>
+              <li>
+                <span class="detail-title">보상 방식</span>
+                <div class="detail-content">
+                  멘토링에 쓰일 추가예산 증정<br />
+                </div>
+              </li>
+            </ul>
+            <div
+              style="
+                background: #eff6ff;
+                color: var(--primary);
+                padding: 10px;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                text-align: center;
+              "
+            >
+              <strong>기대효과:</strong> "그림 못 그려도 괜찮다" 인식,<br />지속
+              의지 강화
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="effect-box">
+        <h3 style="margin-top: 0; color: #166534">🌱 종합 기대 효과</h3>
+        <ul>
+          <li>신입생 전공 이탈률 감소</li>
+          <li>학과 적응 속도 향상</li>
+          <li>건강한 멘토 문화 전승</li>
+          <li>현실적인 학과 자부심 형성</li>
+        </ul>
+      </section>
+
+      <footer>
+        ※ 본 기획은 기존 OT 및 멘토링 제도를 대체하는 것이 아닌,<br />
+        신입생 초기 적응에 초점을 맞춘 프로그램입니다.
+      </footer>
+    </div>
+  </body>
+</html>
